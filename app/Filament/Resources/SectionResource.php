@@ -18,7 +18,7 @@ class SectionResource extends Resource
 {
     protected static ?string $model = Section::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     public static function form(Form $form): Form
     {
@@ -41,7 +41,7 @@ class SectionResource extends Resource
                 Tables\Columns\TextColumn::make('class.name')
                     ->badge()
                     ->color('success')
-                    ->icon('heroicon-o-academic-cap')
+                    ->icon('heroicon-o-presentation-chart-line')
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
