@@ -123,6 +123,10 @@ class StudentResource extends Resource
                 ->url(function(Student $student){
                     return route('student.invoice.generate', $student);
                 }),
+                Tables\Actions\Action::make('qrCode')
+                ->url(function(Student $record){
+                    return static::getUrl('qrCode', ['record' => $record]);
+                }),
                 ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
@@ -158,6 +162,7 @@ class StudentResource extends Resource
             'create' => Pages\CreateStudent::route('/create'),
             'view' => Pages\ViewStudent::route('/{record}'),
             'edit' => Pages\EditStudent::route('/{record}/edit'),
+            'qrCode' => Pages\GenerateQrCode::route('/{record}/qrcode'),
         ];
     }
 
