@@ -46,7 +46,7 @@ class StudentResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
-                    ->unique()
+                    ->unique(ignoreRecord:true)
                     ->maxLength(255),
                 Forms\Components\Select::make('class_id')
                     ->live()
@@ -119,6 +119,10 @@ class StudentResource extends Resource
                     })
             ])
             ->actions([
+                Tables\Actions\Action::make('downloadPdf')
+                ->url(function(Student $student){
+                    return route('student.invoice.generate', $student);
+                }),
                 ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
