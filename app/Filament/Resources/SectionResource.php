@@ -20,6 +20,13 @@ class SectionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
+    protected static ?string $navigationGroup = 'Academic Management';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::$model::count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -43,6 +50,10 @@ class SectionResource extends Resource
                     ->color('success')
                     ->icon('heroicon-o-presentation-chart-line')
                     ->toggleable(),
+                Tables\Columns\TextColumn::make('students_count')
+                    ->counts('students')
+                    ->label('Number of students')
+                    ->badge(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

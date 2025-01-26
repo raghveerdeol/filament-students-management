@@ -27,6 +27,14 @@ class StudentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
+    protected static ?string $navigationGroup = 'Academic Management';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::$model::count();
+    }
+
+
     public static function form(Form $form): Form
     {
         return $form
